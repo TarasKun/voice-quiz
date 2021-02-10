@@ -15,51 +15,12 @@ const QuizWrapper = ({fullName}) => {
         window.gapi.client
             .init({
                 apiKey: config.apiKey,
-                // discoveryDocs: config.discoveryDocs,
             })
             .then(() => {
                 getDataFromSpreadsheets(setQuestionsHandler, 'Week 1!A2:F11');
             });
     };
 
-    // function authenticate() {
-    //     return window.gapi.auth2.getAuthInstance()
-    //         .signIn({scope: "https://www.googleapis.com/auth/spreadsheets"})
-    //         .then(() => {
-    //             console.log("Sign-in successful");
-    //             loadClient()
-    //             },
-    //             (err) => { console.error("Error signing in", err);
-    //         });
-    // }
-
-    function loadClient() {
-        window.gapi.client.setApiKey(config.apiKey);
-        return window.gapi.client.load("https://sheets.googleapis.com/$discovery/rest?version=v4")
-            .then(
-                () => {
-                    console.log("GAPI client loaded for API");
-                    getDataFromSpreadsheets(setQuestionsHandler, 'Week 1!A2:F11')
-                },
-                (err) => {
-                    console.error("Error loading GAPI client for API", err);
-                });
-    }
-
-    // const initClient = () => {
-    //     window.gapi.client
-    //         .init({
-    //             apiKey: config.apiKey,
-    //             discoveryDocs: config.discoveryDocs,
-    //         })
-    //         .then(() => {
-    //             getDataFromSpreadsheets(setQuestionsHandler, 'Week 1!A2:F11');
-    //         });
-    // };
-
-        // useEffect(() => {
-        //     window.gapi.load("client", initClient);
-        // }, []);
     useEffect(() => {
         authenticate();
     }, []);

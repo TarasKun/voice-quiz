@@ -3,14 +3,14 @@ import React, {useEffect, useState} from 'react';
 const Popup = ({startQuiz, style, score}) => {
     const [time, setTime] = useState('start')
     const [title, setTitle] = useState('Вітаю у нашій вікторині')
-    const [text, setText] = useState('Я Марусін помічник! ПОМІЧНИК! ПОМІЧНИК!Я Марусін помічник! ПОМІЧНИК! ПОМІЧНИК!')
+    const [text, setText] = useState('Я не знаю, що тут написит, нехай буде як є')
     const [buttonText, setButtonText] = useState('Старт')
 
     const popupHandle = () => {
         if (time === 'start') {
             setTime('end')
             setTitle('Вітаю')
-            setText('Ви відповіли правильно на ' + score + ' питань')
+            setText('Я не знаю, що тут написит, нехай буде як є')
             setButtonText('Завершити')
             startQuiz();
         } else {
@@ -18,9 +18,13 @@ const Popup = ({startQuiz, style, score}) => {
         }
     }
 
-    const createMarkup = text => {
-        return {__html: text};
-    }
+    useEffect(()=>{
+        if(score >= 5) {
+            setText('Ви відповіли правильно на ' + score + ' питань')
+        } else if (score <= 4 && score > 0) {
+            setText('Ви відповіли правильно на ' + score + ' питання')
+        } else setText('Initial text')
+    }, [score])
 
     return (
         <div className="popup-container" style={style}>
@@ -28,7 +32,7 @@ const Popup = ({startQuiz, style, score}) => {
                 <div className="col-md-8 col-md-offset-2">
                     <div className="popup">
                         <h1>{title}</h1>
-                        <p dangerouslySetInnerHTML={createMarkup(text)}/>
+                        <p>{text}</p>
                         <button className="fancy-btn" onClick={popupHandle}>{buttonText}</button>
                     </div>
                 </div>
