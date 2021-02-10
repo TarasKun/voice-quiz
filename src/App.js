@@ -1,23 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import config from "./config";
+import SignIn from "./component/singIn/SignIn";
 
 function App() {
+    window.gapi.load("client:auth2", function() {
+    window.gapi.auth2.init({client_id: config.clientId});
+});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App center">
+        <SignIn />
     </div>
   );
 }
