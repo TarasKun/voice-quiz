@@ -133,7 +133,7 @@ code {
 
 #submit {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 #happy-music img {
@@ -259,7 +259,7 @@ code {
 }
 
 .signIn {
-    margin-top: 130px;
+    margin-top: 85px;
 }
 
 #mcLogo{
@@ -322,8 +322,9 @@ code {
     #sign-in-title span {
         display: block;
         margin-top: 0;
-        margin-left: 0;
+        margin-left: 55px;
     }
+
 
     #signInContainer {
         width: 90%;
@@ -332,6 +333,11 @@ code {
         background-color: #F3F1F1;
         z-index: -50;
         box-shadow: none;
+        margin-left: 5px;
+    }
+
+    #mcLogo img {
+        margin-left: 55px;
     }
 
     .question-list-full{
@@ -339,7 +345,7 @@ code {
     }
 
     .text-fields-full {
-        margin-top: 0;
+        margin-top: 55px;
         margin-left: 0;
     }
 
