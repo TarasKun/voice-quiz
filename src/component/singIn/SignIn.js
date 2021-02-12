@@ -33,8 +33,10 @@ export default function SignIn() {
         <>
             {personalData ? <QuizWrapper fullName={fullName}/> :
                 <div className="container signIn">
-                    <div className="row">
-                        <div className="col-lg-10 col-lg-offset-1">
+                    {/*<div className="row">*/}
+                    <div>
+                        {/*<div className="col-lg-10 col-lg-offset-1">*/}
+                        <div>
                             <div id='signInContainer'>
                                 <div id='mcLogo'>
                                     <img src={mcLogo} alt="mcLogo"/>
