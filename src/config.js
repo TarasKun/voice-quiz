@@ -3,7 +3,7 @@ const config =  {
     discoveryDocs:
         ["https://sheets.googleapis.com/$discovery/rest?version=v4"],
     spreadsheetId: "19zwBMglHgIGzTVPdjVETptEVGkTB9oAFnErAG58vHag",
-    scop: "https://www.googleapis.com/auth/spreadsheets",
+    scope: "https://www.googleapis.com/auth/spreadsheets",
     clientId: '246384217786-e6nqf7md1i07ut3ufnsbtmdkp51c64a7.apps.googleusercontent.com'
 };
 
