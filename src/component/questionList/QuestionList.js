@@ -33,7 +33,7 @@ const QuestionList = ({data, fullName}) => {
     const nextQuestion = () => {
         if (number === total) {
             setDisplayPopup('flex')
-            setDataToSpreadsheets([fullName.firstName + ' ' + fullName.secondName, score]);
+            setDataToSpreadsheets([fullName.firstName, fullName.secondName, score]);
         } else {
             pushData(number);
             setShowButton(false)
