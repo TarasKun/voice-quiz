@@ -16,7 +16,6 @@ const QuestionList = ({data, fullName}) => {
     const [answers, setAnswers] = useState([])
     const [correct, setCorrect] = useState(0)
     const [classNames, setClassNames] = useState(['', '', '', '']);
-    // const [results, setResults] = useState([]);
 
     const total = data.length;
 
@@ -31,18 +30,9 @@ const QuestionList = ({data, fullName}) => {
         setNumber(number + 1)
     }
 
-    // const setResultsHandler = (data, error) => {
-    //     if (data) {
-    //         setResults(data)
-    //     } else {
-    //         console.log(error);
-    //     }
-    // };
-
     const nextQuestion = () => {
         if (number === total) {
             setDisplayPopup('flex')
-            // setDataToSpreadsheets([...results, [fullName.firstName + ' ' + fullName.secondName, score]])
             setDataToSpreadsheets([fullName.firstName + ' ' + fullName.secondName, score]);
         } else {
             pushData(number);
@@ -65,10 +55,6 @@ const QuestionList = ({data, fullName}) => {
     const handleIncreaseScore = () => {
         setScore(score + 1)
     }
-
-    // useEffect(() => {
-    //     getDataFromSpreadsheets(setResultsHandler, 'Week 1!A15:B60')
-    // }, []);
 
     useComponentWillMount(pushData, number);
 

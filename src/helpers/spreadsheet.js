@@ -1,7 +1,8 @@
 import config from "../config";
 
-
 export function getDataFromSpreadsheets(callback, range) {
+    const currentRange = config.currentQuestionsTable + '!A2:F11';
+
     window.gapi.client.load("sheets", "v4", () => {
         window.gapi.client.sheets.spreadsheets.values
             .get({
@@ -11,7 +12,7 @@ export function getDataFromSpreadsheets(callback, range) {
             .then(
                 response => {
                     const data = response.result.values;
-                    if(range === 'Week1_question!A2:F11'){
+                    if(range === currentRange){
                         const questions = data.map(question => ({
                             question: question[0],
                             answers: [question[1], question[2], question[3], question[4]],
@@ -30,31 +31,13 @@ export function getDataFromSpreadsheets(callback, range) {
     });
 }
 
-// export function setDataToSpreadsheets(score) {
-//     const lastField = 15 + score.length - 1;
-//     return window.gapi.client.sheets.spreadsheets.values.update({
-//         "spreadsheetId": config.spreadsheetId,
-//         "range": `Week1_question!A15:B${lastField}`,
-//         "valueInputOption": "RAW",
-//         "resource": {
-//             "majorDimension": "ROWS",
-//             "range": `Week 1!A15:B${lastField}` ,
-//             "values": score
-//         }
-//     }).then(function () {
-//             console.log("Successful connect");
-//         },
-//         function (err) {
-//             console.error("Execute error", err);
-//         });
-// }
-
 export const setDataToSpreadsheets = async score => {
-    // e.preventDefault();
+    const currentLink = "https://v1.nocodeapi.com/taraskun/google_sheets/JBgbrumLVPNnBOVM?tabId=" + config.currentAnswersTable
 
     try {
         const response = await fetch(
-            "https://v1.nocodeapi.com/taraskun/google_sheets/JBgbrumLVPNnBOVM?tabId=Week1_results", {
+            currentLink,
+            {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -67,5 +50,4 @@ export const setDataToSpreadsheets = async score => {
     } catch (e) {
         console.error(e)
     }
-
 }
