@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Answers from './answer';
 import Popup from './Popup';
-import {getDataFromSpreadsheets, setDataToSpreadsheets} from '../../helpers/spreadsheet'
+import {setDataToSpreadsheets} from '../../helpers/spreadsheet'
 import {useComponentWillMount} from "../../helpers/useComponentWillMount";
 import happy_music from '../../images/happy_music.png'
 import music_girl from '../../images/music_girl.svg'
@@ -16,7 +16,7 @@ const QuestionList = ({data, fullName}) => {
     const [answers, setAnswers] = useState([])
     const [correct, setCorrect] = useState(0)
     const [classNames, setClassNames] = useState(['', '', '', '']);
-    const [results, setResults] = useState([]);
+    // const [results, setResults] = useState([]);
 
     const total = data.length;
 
@@ -31,18 +31,19 @@ const QuestionList = ({data, fullName}) => {
         setNumber(number + 1)
     }
 
-    const setResultsHandler = (data, error) => {
-        if (data) {
-            setResults(data)
-        } else {
-            console.log(error);
-        }
-    };
+    // const setResultsHandler = (data, error) => {
+    //     if (data) {
+    //         setResults(data)
+    //     } else {
+    //         console.log(error);
+    //     }
+    // };
 
     const nextQuestion = () => {
         if (number === total) {
             setDisplayPopup('flex')
-            setDataToSpreadsheets([...results, [fullName.firstName + ' ' + fullName.secondName, score]])
+            // setDataToSpreadsheets([...results, [fullName.firstName + ' ' + fullName.secondName, score]])
+            setDataToSpreadsheets([fullName.firstName + ' ' + fullName.secondName, score]);
         } else {
             pushData(number);
             setShowButton(false)
@@ -65,9 +66,9 @@ const QuestionList = ({data, fullName}) => {
         setScore(score + 1)
     }
 
-    useEffect(() => {
-        getDataFromSpreadsheets(setResultsHandler, 'Week 1!A15:B60')
-    }, []);
+    // useEffect(() => {
+    //     getDataFromSpreadsheets(setResultsHandler, 'Week 1!A15:B60')
+    // }, []);
 
     useComponentWillMount(pushData, number);
 

@@ -17,7 +17,7 @@ const QuizWrapper = ({fullName}) => {
                 apiKey: config.apiKey,
             })
             .then(() => {
-                getDataFromSpreadsheets(setQuestionsHandler, 'Week 1!A2:F11');
+                getDataFromSpreadsheets(setQuestionsHandler, 'Week1_question!A2:F11');
             });
     };
 
