@@ -342,7 +342,7 @@ code {
     }
 
     .question-list-full{
-        margin-top: 100px;
+        margin-top: 20px;
     }
 
     .text-fields{
@@ -377,7 +377,7 @@ code {
     }
 
     #music-girl img {
-        position: absolute;
+        position: fixed;
         display: flex;
         left: 1px;
         bottom: 5px;
