@@ -1,12 +1,12 @@
-import config from "../config";
+const { REACT_APP_SPREADSHEET_ID, REACT_APP_CURRENT_ANSWERS_TABLE, REACT_APP_REACT_APP_CURRENT_QUESTIONS_TABLE } = process.env;
 
 export function getDataFromSpreadsheets(callback, range) {
-    const currentRange = config.currentQuestionsTable + '!A2:F11';
+    const currentRange = REACT_APP_REACT_APP_CURRENT_QUESTIONS_TABLE + '!A2:F11';
 
     window.gapi.client.load("sheets", "v4", () => {
         window.gapi.client.sheets.spreadsheets.values
             .get({
-                spreadsheetId: config.spreadsheetId,
+                spreadsheetId: REACT_APP_SPREADSHEET_ID,
                 range: range
             })
             .then(
@@ -32,7 +32,7 @@ export function getDataFromSpreadsheets(callback, range) {
 }
 
 export const setDataToSpreadsheets = async score => {
-    const currentLink = "https://v1.nocodeapi.com/taraskun/google_sheets/JBgbrumLVPNnBOVM?tabId=" + config.currentAnswersTable
+    const currentLink = "https://v1.nocodeapi.com/taraskun/google_sheets/JBgbrumLVPNnBOVM?tabId=" + REACT_APP_CURRENT_ANSWERS_TABLE
 
     try {
         const response = await fetch(

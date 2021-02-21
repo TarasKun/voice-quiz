@@ -319,6 +319,10 @@ code {
     margin-top: 230px;
 }
 
+.timer{
+    margin-top: 8px;
+}
+
 @media (max-width: 444px) {
     #mcLogo{
         display: block;
@@ -330,7 +334,6 @@ code {
         margin-left: 0;
         position: static;
     }
-
 
     #signInContainer {
         width: 100%;

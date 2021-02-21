@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Answers from './answer';
 import Popup from './Popup';
+import CompoundTimer from '../timer/Timer'
 import {setDataToSpreadsheets} from '../../helpers/spreadsheet'
 import {useComponentWillMount} from "../../helpers/useComponentWillMount";
 import happy_music from '../../images/happy_music.png'
@@ -16,6 +17,8 @@ const QuestionList = ({data, fullName}) => {
     const [answers, setAnswers] = useState([])
     const [correct, setCorrect] = useState(0)
     const [classNames, setClassNames] = useState(['', '', '', '']);
+    const [startTimer, setStartTimer] = useState(false);
+    const [timesUp, setTimesUp] = useState(false);
 
     const total = data.length;
 
@@ -30,17 +33,18 @@ const QuestionList = ({data, fullName}) => {
         setNumber(number + 1)
     }
 
-    const nextQuestion = () => {
+    // eslint-disable-next-line no-undef,react-hooks/exhaustive-deps
+    const nextQuestion = useCallback(() => {
         if (number === total) {
             setDisplayPopup('flex')
-            setDataToSpreadsheets([fullName.firstName, fullName.secondName, score]);
+            setDataToSpreadsheets([fullName.firstName, fullName.secondName, score, new Date().toLocaleString()]);
         } else {
             pushData(number);
             setShowButton(false)
             setQuestionAnswered(false)
             setClassNames(['', '', '', ''])
         }
-    }
+    })
 
     const handleShowButton = () => {
         setShowButton(true);
@@ -49,12 +53,24 @@ const QuestionList = ({data, fullName}) => {
 
     const handleStartQuiz = () => {
         setDisplayPopup('none');
+        setStartTimer(true)
         setNumber(1)
     }
 
     const handleIncreaseScore = () => {
         setScore(score + 1)
     }
+
+    const timesUpHandler = () => {
+        setTimesUp(true)
+    }
+
+    useEffect(() => {
+        if (timesUp) {
+            setNumber(total);
+            nextQuestion()
+        }
+    }, [timesUp, total, nextQuestion])
 
     useComponentWillMount(pushData, number);
 
@@ -63,11 +79,12 @@ const QuestionList = ({data, fullName}) => {
             <div id='happy-music'>
                 <img src={happy_music} alt="happy_music"/>
             </div>
-            <Popup style={{display: displayPopup}} score={score} total={total} startQuiz={handleStartQuiz}/>
+            <Popup style={{display: displayPopup}} score={score} total={total} startQuiz={handleStartQuiz} />
             <div className="row">
                 <div className="col-lg-10 col-lg-offset-1 question-list-full">
                     <div id="question">
-                        <h4>Питання {number}/{total}</h4>
+                        <h4>Питання {number}/{total}                        {startTimer && <CompoundTimer timesUpHandler={timesUpHandler} />}
+                        </h4>
                         <p>{question}</p>
                     </div>
                     {answers.length &&

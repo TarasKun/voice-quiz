@@ -6,11 +6,11 @@ const Popup = ({startQuiz, style, score}) => {
     const [text, setText] = useState('Я не знаю, що тут написит, нехай буде як є')
     const [buttonText, setButtonText] = useState('Старт')
 
-    const popupHandle = () => {
+    const popupHandler = () => {
         if (time === 'start') {
             setTime('end')
             setTitle('Вітаю')
-            setText('Я не знаю, що тут написит, нехай буде як є')
+            setText('Час вийшов')
             setButtonText('Завершити')
             startQuiz();
         } else {
@@ -23,7 +23,7 @@ const Popup = ({startQuiz, style, score}) => {
             setText('Ви відповіли правильно на ' + score + ' питань')
         } else if (score <= 4 && score > 0) {
             setText('Ви відповіли правильно на ' + score + ' питання')
-        } else setText('Initial text')
+        } else setText('У вас є 10 запитань, та 3 хвилини, щоб відповісти. Успіху.')
     }, [score])
 
     return (
@@ -33,7 +33,7 @@ const Popup = ({startQuiz, style, score}) => {
                     <div className="popup">
                         <h1>{title}</h1>
                         <p>{text}</p>
-                        <button className="fancy-btn" onClick={popupHandle}>{buttonText}</button>
+                        <button className="fancy-btn" onClick={popupHandler}>{buttonText}</button>
                     </div>
                 </div>
             </div>
