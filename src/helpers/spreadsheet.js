@@ -1,7 +1,7 @@
-const { REACT_APP_SPREADSHEET_ID, REACT_APP_CURRENT_ANSWERS_TABLE, REACT_APP_REACT_APP_CURRENT_QUESTIONS_TABLE } = process.env;
+const { REACT_APP_SPREADSHEET_ID, REACT_APP_CURRENT_ANSWERS_TABLE, REACT_APP_CURRENT_QUESTIONS_TABLE } = process.env;
 
 export function getDataFromSpreadsheets(callback, range) {
-    const currentRange = REACT_APP_REACT_APP_CURRENT_QUESTIONS_TABLE + '!A2:F11';
+    const currentRange = REACT_APP_CURRENT_QUESTIONS_TABLE + '!A2:F11';
 
     window.gapi.client.load("sheets", "v4", () => {
         window.gapi.client.sheets.spreadsheets.values
