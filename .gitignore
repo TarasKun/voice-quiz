@@ -27,4 +27,4 @@ yarn-error.log*
 /.eslintcache
 
 .vercel
-'.idea' 
+'.idea'
