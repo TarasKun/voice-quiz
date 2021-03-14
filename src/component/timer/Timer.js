@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 const CompoundTimer = ({timesUpHandler}) => {
-    const [counter, setCounter] = useState(180);
+    const [counter, setCounter] = useState(300);
 
     const timesUp = () => {
         timesUpHandler();

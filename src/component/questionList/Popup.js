@@ -23,7 +23,7 @@ const Popup = ({startQuiz, style, score}) => {
             setText('Ви відповіли правильно на ' + score + ' питань')
         } else if (score <= 4 && score > 0) {
             setText('Ви відповіли правильно на ' + score + ' питання')
-        } else setText('У вас є 10 запитань, та 3 хвилини, щоб відповісти. Успіху.')
+        } else setText('У вас є 10 запитань, та 5 хвилин, щоб відповісти. Успіху.')
     }, [score])
 
     return (
