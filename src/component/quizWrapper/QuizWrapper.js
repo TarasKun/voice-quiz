@@ -42,11 +42,19 @@ const QuizWrapper = ({fullName}) => {
         return (<div>Помилка</div>)
     }
 
+    const questionsList = () => {
+        if (questions) {
+            if(!questions.length) {
+                return (<div className={classes.spinner}><CircularProgress/></div>)
+            } else {
+                return (<QuestionList data={questions} fullName={fullName}/>)
+            }
+        }
+    }
+
     return (
         <>
-            {!questions.length ?
-                <div className={classes.spinner}><CircularProgress/></div> :
-                <QuestionList data={questions} fullName={fullName}/>}
+            {questionsList()}
         </>
     )
 }
