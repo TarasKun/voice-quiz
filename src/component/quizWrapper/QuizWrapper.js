@@ -41,7 +41,7 @@ const QuizWrapper = ({fullName}) => {
     if (error.message) {
         return (<div>Помилка</div>)
     }
-    console.log(questions);
+
     return (
         <>
             {!questions.length ?
